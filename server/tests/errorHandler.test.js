@@ -24,7 +24,34 @@ test('handles Mongoose duplicate key (11000) as 409', async () => {
 });
 
 test('handles JWT invalid token as 401', async () => {
-  const app = makeApp((next) => { const e = new Error('bad'); e.name = 'JsonWebTokenError'; next(e); });
+  const app = makeApp((next) => { const e = new Error('Invalid token.'); e.name = 'JsonWebTokenError'; next(e); });
   const res = await request(app).get('/test');
   expect(res.status).toBe(401);
+  expect(res.body.message).toBe('Invalid token.');
+});
+
+test('handles Mongoose ValidationError as 400', async () => {
+  const app = makeApp((next) => {
+    const e = new Error('Validation failed');
+    e.name = 'ValidationError';
+    e.errors = {
+      email: { message: 'Email is required' },
+      name: { message: 'Name is required' }
+    };
+    next(e);
+  });
+  const res = await request(app).get('/test');
+  expect(res.status).toBe(400);
+  expect(res.body.message).toBeDefined();
+});
+
+test('handles TokenExpiredError as 401', async () => {
+  const app = makeApp((next) => {
+    const e = new Error('Token expired.');
+    e.name = 'TokenExpiredError';
+    next(e);
+  });
+  const res = await request(app).get('/test');
+  expect(res.status).toBe(401);
+  expect(res.body.message).toBe('Token expired.');
 });
