@@ -8,7 +8,8 @@ const getTestimonials = async (req, res, next) => {
 
 const createTestimonial = async (req, res, next) => {
   try {
-    res.status(201).json(await Testimonial.create(req.body));
+    const { quote, author, type, rating, sortOrder } = req.body;
+    res.status(201).json(await Testimonial.create({ quote, author, type, rating, sortOrder }));
   } catch (err) { next(err); }
 };
 

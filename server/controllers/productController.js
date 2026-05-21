@@ -13,13 +13,19 @@ const createProduct = async (req, res, next) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) return res.status(422).json({ message: errors.array()[0].msg });
-    res.status(201).json(await Product.create(req.body));
+    const { name, slug, category, description, longDescription, image, tags, sortOrder } = req.body;
+    res.status(201).json(await Product.create({ name, slug, category, description, longDescription, image, tags, sortOrder }));
   } catch (err) { next(err); }
 };
 
 const updateProduct = async (req, res, next) => {
   try {
-    const product = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+    const { name, slug, category, description, longDescription, image, tags, isActive, sortOrder } = req.body;
+    const product = await Product.findByIdAndUpdate(
+      req.params.id,
+      { name, slug, category, description, longDescription, image, tags, isActive, sortOrder },
+      { new: true, runValidators: true }
+    );
     if (!product) return res.status(404).json({ message: 'Product not found.' });
     res.json(product);
   } catch (err) { next(err); }
