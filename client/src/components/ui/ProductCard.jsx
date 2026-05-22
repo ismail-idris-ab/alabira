@@ -12,18 +12,21 @@ export default function ProductCard({ product }) {
       transition={{ duration: 0.2, ease: "ease" }}
     >
       {/* Image */}
-      <div className="relative overflow-hidden" style={{ height: "220px" }}>
-        <img
-          src={imageUrl || "/images/placeholder.webp"}
-          alt={name}
-          className="w-full h-full object-cover"
-          loading="lazy"
-          onError={(e) => {
-            e.target.style.display = "none";
-            e.target.parentNode.style.background =
-              "linear-gradient(135deg, #7FB08A 0%, #2E6B3E 100%)";
-          }}
-        />
+      <div
+        className="relative overflow-hidden"
+        style={{
+          height: "220px",
+          background: "linear-gradient(135deg, #7FB08A 0%, #2E6B3E 100%)",
+        }}
+      >
+        {imageUrl && (
+          <img
+            src={imageUrl}
+            alt={name}
+            className="w-full h-full object-cover"
+            loading="eager"
+          />
+        )}
         {category && (
           <span
             className="absolute top-3 left-3 bg-brand-green text-white font-sans font-medium text-xs px-3 py-1 rounded-lg"
