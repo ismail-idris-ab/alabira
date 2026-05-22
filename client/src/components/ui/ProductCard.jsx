@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 
 export default function ProductCard({ product }) {
-  const { name, category, description, imageUrl } = product;
+  const { name, category, description } = product;
+  const imageUrl = product.image?.url || product.imageUrl;
 
   return (
     <motion.article

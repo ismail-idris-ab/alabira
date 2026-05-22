@@ -47,10 +47,10 @@ export default function TestimonialCarousel({ testimonials }) {
               <footer>
                 <cite className="not-italic">
                   <span className="font-sans font-semibold text-brand-charcoal text-sm block">
-                    {t.name}
+                    {t.author?.name || t.name}
                   </span>
                   <span className="font-sans text-brand-clay text-xs">
-                    {t.role}
+                    {t.author?.role || t.role}
                   </span>
                 </cite>
               </footer>
