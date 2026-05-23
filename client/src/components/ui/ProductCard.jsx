@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 const CATEGORY_LABELS = {
@@ -10,13 +11,16 @@ const CATEGORY_LABELS = {
 export default function ProductCard({ product }) {
   const { name, category, description } = product;
   const imageUrl = product.image?.url || product.imageUrl;
+  const [hovered, setHovered] = useState(false);
 
   return (
     <motion.article
       className="bg-white flex flex-col overflow-hidden"
-      style={{ borderRadius: "4px", border: "1px solid rgba(15,26,20,0.08)" }}
-      whileHover={{ y: -4, boxShadow: "0 16px 40px rgba(15,26,20,0.10)" }}
+      style={{ borderRadius: "4px", border: "1px solid rgba(15,26,20,0.08)", cursor: "pointer" }}
+      whileHover={{ y: -5, boxShadow: "0 20px 48px rgba(15,26,20,0.12)" }}
       transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+      onHoverStart={() => setHovered(true)}
+      onHoverEnd={() => setHovered(false)}
     >
       {/* Image */}
       <div
@@ -24,13 +28,17 @@ export default function ProductCard({ product }) {
         style={{ height: "220px", background: "linear-gradient(135deg, #1B3A2D 0%, #7FB08A 100%)" }}
       >
         {imageUrl && (
-          <img
+          <motion.img
             src={imageUrl}
             alt={name}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            className="w-full h-full object-cover"
             loading="eager"
+            animate={{ scale: hovered ? 1.06 : 1 }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           />
         )}
+
+        {/* Category badge */}
         {category && (
           <span
             className="absolute top-3 left-3 font-sans font-medium text-white"
@@ -47,6 +55,29 @@ export default function ProductCard({ product }) {
             {CATEGORY_LABELS[category] || category}
           </span>
         )}
+
+        {/* Arrow indicator — Prodmast-style, appears on hover */}
+        <motion.div
+          style={{
+            position: "absolute",
+            top: "12px",
+            right: "12px",
+            width: "30px",
+            height: "30px",
+            borderRadius: "2px",
+            backgroundColor: "#B8912A",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: hovered ? 1 : 0, scale: hovered ? 1 : 0.8 }}
+          transition={{ duration: 0.18 }}
+        >
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M7 17L17 7M17 7H7M17 7v10" />
+          </svg>
+        </motion.div>
       </div>
 
       {/* Body */}
@@ -71,13 +102,31 @@ export default function ProductCard({ product }) {
         >
           {description}
         </p>
-        <a
-          href="#contact"
-          className="font-sans font-medium text-brand-green transition-colors hover:text-brand-forest focus:outline-none focus:ring-2 focus:ring-brand-green rounded-sm self-start"
-          style={{ fontSize: "13px", letterSpacing: "0.02em" }}
+
+        {/* Footer row */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            paddingTop: "12px",
+            borderTop: "1px solid rgba(15,26,20,0.06)",
+          }}
         >
-          Enquire →
-        </a>
+          <a
+            href="#contact"
+            className="font-sans font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-brand-green rounded-sm"
+            style={{ fontSize: "13px", letterSpacing: "0.02em", color: hovered ? "#B8912A" : "#1B3A2D" }}
+          >
+            Enquire →
+          </a>
+          <span
+            className="font-sans uppercase"
+            style={{ fontSize: "9px", letterSpacing: "0.16em", color: "rgba(15,26,20,0.25)" }}
+          >
+            Organic
+          </span>
+        </div>
       </div>
     </motion.article>
   );
