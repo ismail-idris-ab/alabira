@@ -50,49 +50,23 @@ export default function ProductsSection() {
 
         {/* Heading */}
         <motion.div
-          className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div>
-            <p
-              className="font-sans uppercase text-brand-sage"
-              style={{ fontSize: "11px", letterSpacing: "0.2em", fontWeight: 500, marginBottom: "16px" }}
-            >
-              What We Grow
-            </p>
-            <h2
-              className="font-display text-brand-ink"
-              style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 600, letterSpacing: "-0.03em", lineHeight: 1.08 }}
-            >
-              Efficient &amp; Integrated
-              <br />
-              <em style={{ fontStyle: "italic", fontWeight: 400 }}>Organic Supply</em>
-            </h2>
-          </div>
-          {/* Category filter pills */}
-          <div className="flex flex-wrap gap-2 md:pb-1">
-            {["All", "Livestock", "Grains", "Produce", "Specialty"].map((cat) => (
-              <span
-                key={cat}
-                className="font-sans"
-                style={{
-                  fontSize: "11px",
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                  padding: "5px 14px",
-                  borderRadius: "2px",
-                  border: cat === "All" ? "1px solid #1B3A2D" : "1px solid rgba(15,26,20,0.15)",
-                  backgroundColor: cat === "All" ? "#1B3A2D" : "transparent",
-                  color: cat === "All" ? "white" : "rgba(15,26,20,0.5)",
-                  cursor: "default",
-                }}
-              >
-                {cat}
-              </span>
-            ))}
-          </div>
+          <p
+            className="font-sans uppercase text-brand-sage"
+            style={{ fontSize: "11px", letterSpacing: "0.2em", fontWeight: 500, marginBottom: "16px" }}
+          >
+            What We Grow
+          </p>
+          <h2
+            className="font-display text-brand-ink"
+            style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 600, letterSpacing: "-0.03em", lineHeight: 1.08 }}
+          >
+            Our Organic Products
+          </h2>
         </motion.div>
 
         {/* Grid */}

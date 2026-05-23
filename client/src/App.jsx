@@ -4,11 +4,9 @@ import Footer from "./components/layout/Footer";
 import HeroSection from "./components/sections/HeroSection";
 
 const AboutSection = lazy(() => import("./components/sections/AboutSection"));
-const BenefitsSection = lazy(() => import("./components/sections/BenefitsSection"));
 const ProductsSection = lazy(() => import("./components/sections/ProductsSection"));
 const SustainabilitySection = lazy(() => import("./components/sections/SustainabilitySection"));
 const GlobalImpactSection = lazy(() => import("./components/sections/GlobalImpactSection"));
-const CTABannerSection = lazy(() => import("./components/sections/CTABannerSection"));
 const ContactSection = lazy(() => import("./components/sections/ContactSection"));
 
 function SectionFallback() {
@@ -28,9 +26,6 @@ export default function App() {
           <AboutSection />
         </Suspense>
         <Suspense fallback={<SectionFallback />}>
-          <BenefitsSection />
-        </Suspense>
-        <Suspense fallback={<SectionFallback />}>
           <ProductsSection />
         </Suspense>
         <Suspense fallback={<SectionFallback />}>
@@ -38,9 +33,6 @@ export default function App() {
         </Suspense>
         <Suspense fallback={<SectionFallback />}>
           <GlobalImpactSection />
-        </Suspense>
-        <Suspense fallback={<SectionFallback />}>
-          <CTABannerSection />
         </Suspense>
         <Suspense fallback={<SectionFallback />}>
           <ContactSection />
