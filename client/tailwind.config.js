@@ -4,18 +4,22 @@ export default {
     extend: {
       colors: {
         brand: {
-          green: "#2E6B3E",
+          green: "#1B3A2D",
+          forest: "#2E6B3E",
           sage: "#7FB08A",
-          cream: "#F5F0E6",
+          cream: "#F7F2E8",
+          parchment: "#EDE6D8",
           white: "#FDFAF5",
           brown: "#4A3B32",
           clay: "#A89080",
-          gold: "#C9952A",
-          charcoal: "#1E1E1E",
+          gold: "#B8912A",
+          ink: "#0F1A14",
+          charcoal: "#0F1A14",
         },
       },
       fontFamily: {
-        serif: ["Playfair Display", "Georgia", "serif"],
+        display: ["Cormorant Garamond", "Georgia", "serif"],
+        serif: ["Cormorant Garamond", "Georgia", "serif"],
         sans: ["DM Sans", "system-ui", "sans-serif"],
       },
     },
