@@ -31,7 +31,7 @@ export default function ContactSection() {
 
   return (
     <section id="contact" className="py-24 lg:py-36" style={{ backgroundColor: "#0F1A14" }}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-16" ref={ref}>
+      <div className="max-w-7xl mx-auto px-6 lg:px-24" ref={ref}>
 
         {/* Heading */}
         <motion.div

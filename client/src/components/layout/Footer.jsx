@@ -18,7 +18,7 @@ const SOCIAL = [
 export default function Footer() {
   return (
     <footer style={{ backgroundColor: "#0F1A14" }}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-16">
+      <div className="max-w-7xl mx-auto px-6 lg:px-24">
 
         {/* Main footer grid */}
         <div

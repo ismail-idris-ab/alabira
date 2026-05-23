@@ -26,7 +26,7 @@ export default function GlobalImpactSection() {
 
   return (
     <section id="impact" className="py-24 lg:py-36" style={{ backgroundColor: "#F7F2E8" }}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-16" ref={ref}>
+      <div className="max-w-7xl mx-auto px-6 lg:px-24" ref={ref}>
 
         {/* Heading */}
         <motion.div

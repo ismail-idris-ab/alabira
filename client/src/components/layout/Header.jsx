@@ -54,7 +54,7 @@ export default function Header() {
         borderBottom: scrolled ? "1px solid rgba(15,26,20,0.08)" : "1px solid transparent",
       }}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-16 h-full flex items-center justify-between gap-8">
+      <div className="max-w-7xl mx-auto px-6 lg:px-24 h-full flex items-center justify-between gap-8">
 
         {/* Logo */}
         <a

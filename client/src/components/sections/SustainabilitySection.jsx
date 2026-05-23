@@ -46,7 +46,7 @@ export default function SustainabilitySection() {
 
   return (
     <section id="sustainability" className="py-24 lg:py-36" style={{ backgroundColor: "#1B3A2D" }}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-16" ref={ref}>
+      <div className="max-w-7xl mx-auto px-6 lg:px-24" ref={ref}>
 
         {/* Heading */}
         <motion.div
