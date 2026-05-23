@@ -31,7 +31,7 @@ export default function ContactForm() {
   };
 
   const inputBase =
-    "w-full bg-white text-brand-brown font-sans text-base px-4 py-4 rounded-xl border border-white/20 focus:outline-none focus:ring-2 focus:ring-brand-green focus:border-brand-green transition-all placeholder:text-brand-clay/60";
+    "w-full font-sans text-white placeholder:text-white/30 transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-brand-sage";
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
