@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
+const { MongoMemoryServer } = require('mongodb-memory-server');
 
+let mongod;
 beforeAll(async () => {
-  if (process.env.MONGODB_URI) {
-    await mongoose.connect(process.env.MONGODB_URI);
-  } else {
-    await mongoose.connect('mongodb://127.0.0.1:27017/alabira_test');
-  }
-}, 120000);
+  mongod = await MongoMemoryServer.create();
+  await mongoose.connect(mongod.getUri());
+}, 30000);
 
 afterAll(async () => {
   await mongoose.disconnect();
+  await mongod.stop();
 });
 
 describe('Contact', () => {

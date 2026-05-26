@@ -11,8 +11,8 @@ const submitContact = async (req, res, next) => {
     const { name, email, message } = req.body;
     const contact = await Contact.create({ name, email, message, ipAddress: req.ip, userAgent: req.headers['user-agent'] });
 
-    sendContactNotification(contact);
-    sendContactConfirmation(email, name);
+    sendContactNotification(contact).catch((err) => console.error('Contact notification email failed:', err.message));
+    sendContactConfirmation(email, name).catch((err) => console.error('Contact confirmation email failed:', err.message));
 
     res.status(201).json({ message: 'Message received.' });
   } catch (err) {

@@ -37,8 +37,7 @@ export default function FarmMap() {
     <MapContainer
       center={[9.082, 8.6753]}
       zoom={6}
-      style={{ height: "450px", width: "100%", borderRadius: "16px" }}
-      className="shadow-md"
+      className="h-112.5 w-full shadow-md"
       scrollWheelZoom={false}
     >
       <TileLayer

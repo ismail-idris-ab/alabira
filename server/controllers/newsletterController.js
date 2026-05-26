@@ -12,7 +12,7 @@ const subscribe = async (req, res, next) => {
       return res.status(409).json({ message: 'You are already subscribed.' });
 
     const subscriber = await Subscriber.create({ email });
-    sendWelcomeNewsletter(email, subscriber.unsubscribeToken);
+    sendWelcomeNewsletter(email, subscriber.unsubscribeToken).catch((err) => console.error('Welcome email failed:', err.message));
     res.status(201).json({ message: 'Subscribed successfully.' });
   } catch (err) {
     next(err);
@@ -28,7 +28,7 @@ const unsubscribe = async (req, res, next) => {
     subscriber.status = 'unsubscribed';
     subscriber.unsubscribedAt = new Date();
     await subscriber.save();
-    sendUnsubscribeConfirmation(subscriber.email);
+    sendUnsubscribeConfirmation(subscriber.email).catch((err) => console.error('Unsubscribe email failed:', err.message));
     res.json({ message: 'You have been unsubscribed.' });
   } catch (err) {
     next(err);

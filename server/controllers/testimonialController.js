@@ -2,7 +2,7 @@ const Testimonial = require('../models/Testimonial');
 
 const getTestimonials = async (req, res, next) => {
   try {
-    res.json(await Testimonial.find({ isApproved: true }).sort({ sortOrder: 1 }));
+    res.json({ data: await Testimonial.find({ isApproved: true }).sort({ sortOrder: 1 }) });
   } catch (err) { next(err); }
 };
 

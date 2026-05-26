@@ -1,5 +1,6 @@
 const request = require('supertest');
 const mongoose = require('mongoose');
+const { MongoMemoryServer } = require('mongodb-memory-server');
 const jwt = require('jsonwebtoken');
 process.env.JWT_ACCESS_SECRET = 'testsecret';
 process.env.RESEND_API_KEY = 'test';
@@ -18,8 +19,15 @@ const Testimonial = require('../models/Testimonial');
 const adminToken = jwt.sign({ id: 'adminid', role: 'superadmin' }, 'testsecret', { expiresIn: '1h' });
 const sample = { quote: 'Amazing quality from Alabira farms.', author: { name: 'Ibrahim Musa', role: 'Farmer', location: 'Jos' }, type: 'farmer', rating: 5, isApproved: true };
 
-beforeAll(() => mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/alabira_test'));
-afterAll(() => mongoose.disconnect());
+let mongod;
+beforeAll(async () => {
+  mongod = await MongoMemoryServer.create();
+  await mongoose.connect(mongod.getUri());
+}, 30000);
+afterAll(async () => {
+  await mongoose.disconnect();
+  await mongod.stop();
+});
 afterEach(() => Testimonial.deleteMany({}));
 
 test('GET /api/testimonials returns only approved', async () => {
@@ -27,8 +35,8 @@ test('GET /api/testimonials returns only approved', async () => {
   await Testimonial.create({ ...sample, author: { ...sample.author, name: 'Pending' }, isApproved: false });
   const res = await request(app).get('/api/testimonials');
   expect(res.status).toBe(200);
-  expect(res.body.length).toBe(1);
-  expect(res.body[0].author.name).toBe('Ibrahim Musa');
+  expect(res.body.data.length).toBe(1);
+  expect(res.body.data[0].author.name).toBe('Ibrahim Musa');
 });
 
 test('POST /api/testimonials requires admin token', async () => {

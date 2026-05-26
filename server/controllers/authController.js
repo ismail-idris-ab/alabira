@@ -16,7 +16,7 @@ const login = async (req, res, next) => {
     const accessToken  = signAccess(admin._id, admin.role);
     const refreshToken = signRefresh(admin._id);
 
-    admin.refreshTokens.push(refreshToken);
+    admin.refreshTokens = [...admin.refreshTokens.slice(-4), refreshToken];
     admin.lastLogin = new Date();
     await admin.save();
 

@@ -1,5 +1,6 @@
 const request = require('supertest');
 const mongoose = require('mongoose');
+const { MongoMemoryServer } = require('mongodb-memory-server');
 process.env.RESEND_API_KEY = 'test';
 process.env.FROM_EMAIL = 'x';
 
@@ -11,8 +12,15 @@ jest.mock('../utils/emailService', () => ({
 const app = require('../app');
 const Subscriber = require('../models/Subscriber');
 
-beforeAll(() => mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/alabira_test'));
-afterAll(() => mongoose.disconnect());
+let mongod;
+beforeAll(async () => {
+  mongod = await MongoMemoryServer.create();
+  await mongoose.connect(mongod.getUri());
+}, 30000);
+afterAll(async () => {
+  await mongoose.disconnect();
+  await mongod.stop();
+});
 afterEach(() => Subscriber.deleteMany({}));
 
 test('POST /api/newsletter/subscribe saves subscriber and returns 201', async () => {

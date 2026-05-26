@@ -14,6 +14,7 @@ const {
   sendUnsubscribeConfirmation,
 } = require('../utils/emailService');
 
+const { Resend } = require('resend');
 const contact = { name: 'Test', email: 'u@t.com', message: 'Hi', createdAt: new Date(), ipAddress: '127.0.0.1' };
 
 test('sendContactNotification returns success:true', async () => {
@@ -26,6 +27,20 @@ test('sendContactConfirmation returns success:true', async () => {
 
 test('sendWelcomeNewsletter returns success:true', async () => {
   expect((await sendWelcomeNewsletter('sub@t.com', 'abc123token')).success).toBe(true);
+});
+
+test('email templates do not contain stray brand name artifacts', async () => {
+  const sendSpy = Resend.mock.results[0].value.emails.send;
+
+  await sendContactNotification(contact);
+  await sendContactConfirmation('u@t.com', 'Test');
+  await sendWelcomeNewsletter('sub@t.com', 'token123');
+  await sendUnsubscribeConfirmation('sub@t.com');
+
+  for (const call of sendSpy.mock.calls) {
+    const html = call[0].html;
+    expect(html).not.toMatch(/tilde/i);
+  }
 });
 
 test('returns success:false (no throw) on SDK error', async () => {
