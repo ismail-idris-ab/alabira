@@ -6,11 +6,22 @@ import HeroSection from "./components/sections/HeroSection";
 import WhatsAppButton from "./components/ui/WhatsAppButton";
 import ErrorBoundary from "./components/ui/ErrorBoundary";
 
-const AboutSection = lazy(() => import("./components/sections/AboutSection"));
-const ProductsSection = lazy(() => import("./components/sections/ProductsSection"));
-const SustainabilitySection = lazy(() => import("./components/sections/SustainabilitySection"));
-const GlobalImpactSection = lazy(() => import("./components/sections/GlobalImpactSection"));
-const ContactSection = lazy(() => import("./components/sections/ContactSection"));
+// Retries the dynamic import up to 3 times before giving up
+const lazyWithRetry = (factory, retries = 3, delay = 400) =>
+  lazy(() => {
+    const attempt = (n) =>
+      factory().catch((err) => {
+        if (n <= 0) throw err;
+        return new Promise((res) => setTimeout(res, delay)).then(() => attempt(n - 1));
+      });
+    return attempt(retries);
+  });
+
+const AboutSection          = lazyWithRetry(() => import("./components/sections/AboutSection"));
+const ProductsSection       = lazyWithRetry(() => import("./components/sections/ProductsSection"));
+const SustainabilitySection = lazyWithRetry(() => import("./components/sections/SustainabilitySection"));
+const GlobalImpactSection   = lazyWithRetry(() => import("./components/sections/GlobalImpactSection"));
+const ContactSection        = lazyWithRetry(() => import("./components/sections/ContactSection"));
 
 function SectionFallback() {
   return (

@@ -182,12 +182,7 @@ export default function HeroSection() {
           variants={fadeUp}
           className="font-sans text-body-fluid font-light text-[#F0E6CC]/55 max-w-[520px] leading-[1.85] mb-12 tracking-[0.01em]"
         >
-          Certified organic produce, forward-thinking agricultural enterprises
-          committed to sustainable farming practices. we cultivate high-quality
-          crops while prioritizing environmental stewardship, community
-          engagement, and economic empowerment. Our mission is to provide fresh,
-          nutritious food while fostering a healthier planet and thriving
-          communities.
+          At Alabira Global Farm Tilde, we are committed to producing certified organic, high quality crops through sustainable and eco-friendly farming practices. <br/> our work is guided by environmental responsibility, community engagement, and economic enpowerment. <br/> We aim to deliver fresh, nutritious food while while contributing to a healthier planet and stronger communities.
         </motion.p>
 
         {/* CTAs */}
