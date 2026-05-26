@@ -36,14 +36,17 @@ export default function AboutSection() {
             className="relative"
           >
             <div className="overflow-hidden aspect-[3/2] sm:aspect-[4/5] rounded-[4px] bg-card-gradient relative">
-              <div className="absolute inset-0 animate-pulse bg-brand-sage/[0.12]" />
+              <div id="about-pulse" className="absolute inset-0 animate-pulse bg-brand-sage/[0.12]" />
               <img
                 src="/images/about.png"
                 alt="Alabira farm workers tending organic crops at sunrise"
-                className="w-full h-full object-cover opacity-0 transition-opacity duration-500"
+                className="w-full h-full object-cover opacity-0 transition-opacity duration-500 relative z-10"
                 loading="lazy"
-                onLoad={(e) => { e.target.style.opacity = "1"; }}
-                onError={(e) => { e.target.style.display = "none"; }}
+                onLoad={(e) => {
+                  e.target.style.opacity = "1";
+                  const pulse = e.target.parentElement.querySelector("#about-pulse");
+                  if (pulse) pulse.style.display = "none";
+                }}
               />
             </div>
 
