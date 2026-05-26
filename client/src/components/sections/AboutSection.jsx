@@ -38,7 +38,7 @@ export default function AboutSection() {
             <div className="overflow-hidden aspect-[3/2] sm:aspect-[4/5] rounded-[4px] bg-card-gradient relative">
               <div className="absolute inset-0 animate-pulse bg-brand-sage/[0.12]" />
               <img
-                src="/images/about.webp"
+                src="/images/about.png"
                 alt="Alabira farm workers tending organic crops at sunrise"
                 className="w-full h-full object-cover opacity-0 transition-opacity duration-500"
                 loading="lazy"
