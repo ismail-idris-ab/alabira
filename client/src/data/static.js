@@ -1,12 +1,12 @@
 export const staticProducts = [
   {
     _id: "1",
-    name: "Premium Cow Beef gh",
+    name: "Premium Cow Beef",
     category: "livestock",
     description:
       "Grass-fed cattle raised on open Plateau State pastures. Rich, lean, and ethically sourced for discerning tables.",
     image: {
-      url: "../assets/images/products/ggg.png",
+      url: "/images/products/cow_beef.jpg",
       alt: "Premium Cow Beef",
     },
     isActive: true,
@@ -18,7 +18,7 @@ export const staticProducts = [
     description:
       "Pasture-raised chickens with no growth hormones. Superior texture and taste compared to commercial broilers.",
     image: {
-      url: "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=600&q=80",
+      url: "/images/products/chicken.jpg",
       alt: "Free-Range Chicken",
     },
     isActive: true,
@@ -30,7 +30,7 @@ export const staticProducts = [
     description:
       "Whole-grain brown rice cultivated in the rich soils of Benue. Nutty, nutritious, and chemical-free.",
     image: {
-      url: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=600&q=80",
+      url: "/images/products/rice.jpg",
       alt: "Organic Brown Rice",
     },
     isActive: true,
@@ -42,7 +42,7 @@ export const staticProducts = [
     description:
       "Traditional millet, drought-resilient and rich in iron. A staple of Northern Nigerian cuisine.",
     image: {
-      url: "https://images.unsplash.com/photo-1631209121750-a9f656d8a9e9?w=600&q=80",
+      url: "",
       alt: "Pearl Millet",
     },
     isActive: true,
@@ -54,7 +54,7 @@ export const staticProducts = [
     description:
       "A curated box of seasonal produce — tomatoes, spinach, peppers, and okra. Harvested to order.",
     image: {
-      url: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600&q=80",
+      url: "",
       alt: "Seasonal Vegetables",
     },
     isActive: true,
@@ -66,7 +66,7 @@ export const staticProducts = [
     description:
       "Mangoes, pawpaw, pineapple, and guava. Tree-ripened for maximum sweetness, never cold-stored.",
     image: {
-      url: "https://images.unsplash.com/photo-1546548970-71785318a17b?w=600&q=80",
+      url: "",
       alt: "Tropical Fruits",
     },
     isActive: true,
@@ -78,7 +78,7 @@ export const staticProducts = [
     description:
       "Wild-harvested honey from Plateau State beehives. Unfiltered, unpasteurized — medicinal quality.",
     image: {
-      url: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=600&q=80",
+      url: "",
       alt: "Raw Nigerian Honey",
     },
     isActive: true,
@@ -90,7 +90,7 @@ export const staticProducts = [
     description:
       "Cold-pressed palm, groundnut, and coconut oils. No solvents, no bleaching — pure Nigerian terroir.",
     image: {
-      url: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=600&q=80",
+      url: "",
       alt: "Cold-Pressed Oils",
     },
     isActive: true,
@@ -100,7 +100,7 @@ export const staticProducts = [
 export const staticTestimonials = [
   {
     _id: "1",
-    name: "Chukwuemeka Obi",
+    name: "Yunusa Aliyu",
     role: "Restaurant Owner, Lagos",
     quote:
       "Alabira's organic tomatoes have transformed our kitchen. The flavour is incomparable to anything we've sourced before.",
@@ -116,8 +116,16 @@ export const staticTestimonials = [
   },
   {
     _id: "3",
-    name: "David Mensah",
-    role: "Export Trader, Accra",
+    name: "Joe Markus",
+    role: "Food Service, restaurant",
+    quote:
+      "Consistent quality, on-time delivery, and transparent sourcing. Alabira is the farm partner we've always needed.",
+    isApproved: true,
+  },
+  {
+    _id: "4",
+    name: "Janet John",
+    role: "Distributor ",
     quote:
       "Consistent quality, on-time delivery, and transparent sourcing. Alabira is the farm partner we've always needed.",
     isApproved: true,

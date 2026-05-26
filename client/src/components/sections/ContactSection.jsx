@@ -8,14 +8,14 @@ const CONTACT_DETAILS = [
   {
     icon: Mail,
     label: "Email",
-    value: "hello@alabiraglobalfarm.com",
-    href: "mailto:hello@alabiraglobalfarm.com",
+    value: "itsauwalalabira@gmail.com",
+    href: "mailto:itsauwalalabira@gmail.com",
   },
   {
     icon: Phone,
     label: "Phone",
-    value: "+234 800 000 0000",
-    href: "tel:+2348000000000",
+    value: "+234 803 266 5647",
+    href: "tel:+2348032665647",
   },
   {
     icon: MapPin,

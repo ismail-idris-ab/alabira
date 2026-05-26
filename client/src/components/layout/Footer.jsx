@@ -84,8 +84,8 @@ export default function Footer() {
             </p>
             <ul className="space-y-5">
               {[
-                { label: "Email", value: "hello@alabiraglobalfarm.com", href: "mailto:hello@alabiraglobalfarm.com" },
-                { label: "Phone", value: "+234 800 000 0000", href: "tel:+2348000000000" },
+                { label: "Email", value: "itsauwalalabira@gmail.com", href: "mailto:itsauwalalabira@gmail.com" },
+                { label: "Phone", value: "+234 803 266 5647", href: "tel:+2348032665647" },
                 { label: "Location", value: "Jos, Plateau State, Nigeria", href: "#" },
               ].map(({ label, value, href }) => (
                 <li key={label}>

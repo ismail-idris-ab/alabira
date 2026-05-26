@@ -4,7 +4,7 @@ import { Loader2, CheckCircle2, Send } from "lucide-react";
 import { contactApi } from "../../services/api";
 
 const CONTACT_EMAIL = "itsauwalalabira@gmail.com";
-const WHATSAPP_NUMBER = "2348000000000";
+const WHATSAPP_NUMBER = "2348032665647";
 
 function IconWhatsApp({ size = 16 }) {
   return (

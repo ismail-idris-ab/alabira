@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 
-const WHATSAPP_NUMBER = "2348000000000";
+const WHATSAPP_NUMBER = "2348032665647";
 const WHATSAPP_MESSAGE = "Hi Alabira Global Farm! I'd like to learn more about your organic products.";
 
 function IconWhatsApp({ size = 24 }) {
