@@ -25,6 +25,7 @@
     "react-leaflet": "^5.0.0",
     "react-router-dom": "^7.15.1",
     "swiper": "^12.1.4",
-    "tailwindcss": "^4.3.0"
+    "tailwindcss": "^4.3.0",
+    "three": "^0.184.0"
   }
 }

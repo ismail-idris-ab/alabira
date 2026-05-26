@@ -17,26 +17,25 @@ const SOCIAL = [
 
 export default function Footer() {
   return (
-    <footer style={{ backgroundColor: "#0F1A14" }}>
+    <footer className="bg-brand-ink">
       <div className="max-w-7xl mx-auto px-6 lg:px-24">
 
-        {/* Main footer grid */}
-        <div
-          className="grid grid-cols-1 md:grid-cols-12 gap-12 py-16"
-          style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}
-        >
+        {/* Main grid */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 py-16 border-b border-white/[8%]">
+
           {/* Brand column */}
           <div className="md:col-span-5">
-            <img
-              src="/alabira logo.png"
-              alt="Alabira Global Farm"
-              className="h-12 w-auto object-contain mb-6"
-              style={{ filter: "brightness(0) invert(1)", opacity: 0.9 }}
-            />
-            <p
-              className="font-sans leading-relaxed"
-              style={{ fontSize: "0.9375rem", color: "rgba(255,255,255,0.4)", lineHeight: 1.75, maxWidth: "320px" }}
-            >
+            <a href="#" className="inline-block mb-6 focus:outline-none focus:ring-1 focus:ring-brand-sage rounded-sm">
+              <img
+                src="/alabira-logo.svg"
+                alt="Alabira Global Farm Tilde"
+                width="160"
+                height="36"
+                className="h-9 w-auto brightness-0 invert opacity-85"
+              />
+            </a>
+
+            <p className="font-sans text-[15px] text-white/40 leading-[1.75] max-w-[300px]">
               Sustainable organic farming from the heart of Nigeria — nurturing
               nature and feeding communities since 2010.
             </p>
@@ -48,22 +47,7 @@ export default function Footer() {
                   key={label}
                   href={href}
                   aria-label={label}
-                  className="flex items-center justify-center transition-colors duration-200 focus:outline-none focus:ring-1 focus:ring-brand-sage"
-                  style={{
-                    width: "36px",
-                    height: "36px",
-                    borderRadius: "2px",
-                    border: "1px solid rgba(255,255,255,0.1)",
-                    color: "rgba(255,255,255,0.4)",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.06)";
-                    e.currentTarget.style.color = "rgba(255,255,255,0.85)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = "transparent";
-                    e.currentTarget.style.color = "rgba(255,255,255,0.4)";
-                  }}
+                  className="flex items-center justify-center size-9 rounded-[3px] border border-white/10 text-white/40 transition-all duration-200 hover:bg-white/[6%] hover:text-white/85 focus:outline-none focus:ring-1 focus:ring-brand-sage"
                 >
                   <Icon size={15} />
                 </a>
@@ -72,25 +56,19 @@ export default function Footer() {
           </div>
 
           {/* Spacer */}
-          <div className="md:col-span-2" />
+          <div className="hidden md:block md:col-span-1" />
 
           {/* Quick links */}
           <div className="md:col-span-2">
-            <p
-              className="font-sans uppercase"
-              style={{ fontSize: "10px", letterSpacing: "0.18em", fontWeight: 500, color: "rgba(255,255,255,0.28)", marginBottom: "20px" }}
-            >
+            <p className="font-sans text-label tracking-footer font-semibold uppercase text-white/[28%] mb-5">
               Navigate
             </p>
-            <ul className="space-y-3">
+            <ul className="space-y-3.5">
               {QUICK_LINKS.map(({ label, href }) => (
                 <li key={href}>
                   <a
                     href={href}
-                    className="font-sans transition-colors duration-150 focus:outline-none focus:ring-1 focus:ring-brand-sage rounded-sm"
-                    style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.45)" }}
-                    onMouseEnter={(e) => (e.target.style.color = "rgba(255,255,255,0.85)")}
-                    onMouseLeave={(e) => (e.target.style.color = "rgba(255,255,255,0.45)")}
+                    className="font-sans text-[0.9rem] text-white/45 transition-colors duration-150 hover:text-white/85 focus:outline-none focus:ring-1 focus:ring-brand-sage rounded-sm"
                   >
                     {label}
                   </a>
@@ -100,55 +78,55 @@ export default function Footer() {
           </div>
 
           {/* Contact snippet */}
-          <div className="md:col-span-3">
-            <p
-              className="font-sans uppercase"
-              style={{ fontSize: "10px", letterSpacing: "0.18em", fontWeight: 500, color: "rgba(255,255,255,0.28)", marginBottom: "20px" }}
-            >
+          <div className="md:col-span-4">
+            <p className="font-sans text-label tracking-footer font-semibold uppercase text-white/[28%] mb-5">
               Get In Touch
             </p>
-            <ul className="space-y-4">
+            <ul className="space-y-5">
               {[
                 { label: "Email", value: "hello@alabiraglobalfarm.com", href: "mailto:hello@alabiraglobalfarm.com" },
                 { label: "Phone", value: "+234 800 000 0000", href: "tel:+2348000000000" },
                 { label: "Location", value: "Jos, Plateau State, Nigeria", href: "#" },
               ].map(({ label, value, href }) => (
                 <li key={label}>
-                  <span
-                    className="font-sans block"
-                    style={{ fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.22)", marginBottom: "3px", fontWeight: 500 }}
-                  >
+                  <span className="font-sans block text-[10px] tracking-[0.14em] uppercase text-white/[22%] mb-1 font-semibold">
                     {label}
                   </span>
                   <a
                     href={href}
-                    className="font-sans transition-colors duration-150 focus:outline-none focus:ring-1 focus:ring-brand-sage rounded-sm"
-                    style={{ fontSize: "0.875rem", color: "rgba(255,255,255,0.45)" }}
-                    onMouseEnter={(e) => (e.target.style.color = "rgba(255,255,255,0.85)")}
-                    onMouseLeave={(e) => (e.target.style.color = "rgba(255,255,255,0.45)")}
+                    className="font-sans text-sm text-white/50 transition-colors duration-150 hover:text-white/85 focus:outline-none focus:ring-1 focus:ring-brand-sage rounded-sm"
                   >
                     {value}
                   </a>
                 </li>
               ))}
             </ul>
+
+            <a
+              href="#contact"
+              className="inline-flex items-center mt-8 font-sans font-semibold text-[13px] tracking-cta py-2.5 px-6 rounded-[3px] bg-brand-green text-white hover:bg-brand-forest transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand-sage"
+            >
+              Start a Conversation
+            </a>
           </div>
         </div>
 
         {/* Bottom bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 py-6">
-          <p
-            className="font-sans"
-            style={{ fontSize: "12px", color: "rgba(255,255,255,0.22)", letterSpacing: "0.01em" }}
-          >
-            © {new Date().getFullYear()} Alabira Global Farm Tilde. All rights reserved.
+          <p className="font-sans text-xs text-white/[22%] tracking-[0.01em] text-center sm:text-left">
+            © {new Date().getFullYear()} Alabira Global Farm. All rights reserved.
           </p>
-          <p
-            className="font-sans italic"
-            style={{ fontSize: "12px", color: "rgba(255,255,255,0.18)" }}
-          >
-            Nurturing Nature · Feeding the World
-          </p>
+          <div className="flex items-center gap-6">
+            {["Privacy Policy", "Terms & Conditions"].map((label) => (
+              <a
+                key={label}
+                href="#"
+                className="font-sans text-xs text-white/[22%] hover:text-white/55 transition-colors"
+              >
+                {label}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </footer>

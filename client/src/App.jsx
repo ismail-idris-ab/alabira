@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import HeroSection from "./components/sections/HeroSection";
+import WhatsAppButton from "./components/ui/WhatsAppButton";
 
 const AboutSection = lazy(() => import("./components/sections/AboutSection"));
 const ProductsSection = lazy(() => import("./components/sections/ProductsSection"));
@@ -10,16 +11,13 @@ const GlobalImpactSection = lazy(() => import("./components/sections/GlobalImpac
 const ContactSection = lazy(() => import("./components/sections/ContactSection"));
 
 function SectionFallback() {
-  return <div style={{ minHeight: "400px" }} />;
+  return <div className="min-h-100" />;
 }
 
 export default function App() {
   return (
     <>
-      <a href="#main-content" className="skip-to-content">
-        Skip to content
-      </a>
-      <Header />
+<Header />
       <main id="main-content">
         <HeroSection />
         <Suspense fallback={<SectionFallback />}>
@@ -39,6 +37,7 @@ export default function App() {
         </Suspense>
       </main>
       <Footer />
+      <WhatsAppButton />
     </>
   );
 }

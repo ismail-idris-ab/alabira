@@ -1,85 +1,122 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand palette — refined */
-  --color-brand-green: #1b3a2d;
-  --color-brand-forest: #2e6b3e;
-  --color-brand-sage: #7fb08a;
-  --color-brand-cream: #f7f2e8;
-  --color-brand-parchment: #ede6d8;
-  --color-brand-white: #fdfaf5;
-  --color-brand-brown: #4a3b32;
-  --color-brand-clay: #a89080;
-  --color-brand-gold: #b8912a;
-  --color-brand-ink: #0f1a14;
-  --color-brand-charcoal: #0f1a14;
+  /* Brand palette */
+  --color-brand-green:      #1b3a2d;
+  --color-brand-forest:     #2e6b3e;
+  --color-brand-sage:       #7fb08a;
+  --color-brand-cream:      #f7f2e8;
+  --color-brand-parchment:  #ede6d8;
+  --color-brand-white:      #fdfaf5;
+  --color-brand-brown:      #4a3b32;
+  --color-brand-clay:       #a89080;
+  --color-brand-gold:       #b8912a;
+  --color-brand-ink:        #0f1a14;
+  --color-brand-charcoal:   #0f1a14;
+  --color-whatsapp:         #25d366;
 
   /* Typography */
   --font-display: "Cormorant Garamond", Georgia, serif;
-  --font-serif: "Cormorant Garamond", Georgia, serif;
-  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-serif:   "Cormorant Garamond", Georgia, serif;
+  --font-sans:    "DM Sans", system-ui, sans-serif;
+
+  /* Fluid font sizes */
+  --text-eyebrow:        11px;
+  --text-label:          10px;
+  --text-cta:            13.5px;
+  --text-hero:           clamp(3.25rem, 8.5vw, 6.75rem);
+  --text-section:        clamp(2rem, 4vw, 3rem);
+  --text-stat:           clamp(1.5rem, 5vw, 3rem);
+  --text-stat-sm:        clamp(1.25rem, 4vw, 2.5rem);
+  --text-subtitle:       clamp(1.5rem, 3vw, 2rem);
+  --text-mobile-nav:     clamp(2rem, 9vw, 2.75rem);
+  --text-body-fluid:     clamp(0.9375rem, 1.8vw, 1.0625rem);
+  --text-contact-heading:clamp(2.25rem, 5vw, 3.5rem);
+
+  /* Letter spacing */
+  --tracking-editorial:  0.22em;
+  --tracking-section:    0.2em;
+  --tracking-heading:    -0.03em;
+  --tracking-heading-sm: -0.02em;
+  --tracking-cta:        0.03em;
+  --tracking-label:      0.16em;
+  --tracking-footer:     0.18em;
+  --tracking-nav:        0.015em;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    scrollbar-width: none;
+  }
 
-html {
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-}
+  html::-webkit-scrollbar {
+    display: none;
+  }
 
-body {
-  font-family: var(--font-sans);
-  background-color: var(--color-brand-cream);
-  color: var(--color-brand-ink);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-  width: 100%;
-}
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-brand-cream);
+    color: var(--color-brand-ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    width: 100%;
+  }
 
-/* Skip to content */
-.skip-to-content {
-  position: absolute;
-  left: -9999px;
-  top: 1rem;
-  z-index: 9999;
-  background: var(--color-brand-green);
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 2px;
-  font-size: 0.875rem;
-  font-family: var(--font-sans);
-}
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 
-.skip-to-content:focus {
-  left: 1rem;
-}
+  .leaflet-container {
+    border-radius: 12px;
+    z-index: 1;
+  }
 
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  .leaflet-popup-content-wrapper {
+    border-radius: 8px;
+    font-family: var(--font-sans);
   }
 }
 
-/* Leaflet overrides */
-.leaflet-container {
-  border-radius: 12px;
-  z-index: 1;
+@layer utilities {
+  .bg-hero-gradient {
+    background: radial-gradient(ellipse 90% 80% at 50% 38%, #274836 0%, #162d1e 40%, #0c1a10 100%);
+  }
+
+  .bg-hero-grain {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 200px 200px;
+  }
+
+  .bg-card-gradient {
+    background: linear-gradient(145deg, #1b3a2d 0%, #2e5c3f 60%, #7fb08a 100%);
+  }
+
+  /* Section divider — used between cream & white sections */
+  .section-rule {
+    border-top: 1px solid rgba(15, 26, 20, 0.07);
+  }
+
+  /* Gold accent line (used under headings) */
+  .heading-rule {
+    display: block;
+    width: 2.5rem;
+    height: 2px;
+    background: linear-gradient(90deg, #b8912a 0%, #c9a44e 100%);
+    border-radius: 2px;
+  }
 }
 
-.leaflet-popup-content-wrapper {
-  border-radius: 8px;
-  font-family: var(--font-sans);
+/* Scroll-triggered fade-up — applied via JS inView */
+@keyframes fadeUpIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
