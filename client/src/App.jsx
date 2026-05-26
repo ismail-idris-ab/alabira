@@ -13,7 +13,9 @@ const GlobalImpactSection = lazy(() => import("./components/sections/GlobalImpac
 const ContactSection = lazy(() => import("./components/sections/ContactSection"));
 
 function SectionFallback() {
-  return <div className="min-h-100" />;
+  return (
+    <div className="min-h-[420px] w-full animate-pulse bg-gradient-to-b from-brand-cream/60 to-transparent" />
+  );
 }
 
 export default function App() {

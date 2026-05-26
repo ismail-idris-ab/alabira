@@ -29,12 +29,16 @@ export default function ProductCard({ product }) {
       {/* Image / Placeholder */}
       <div className="relative overflow-hidden h-[196px] bg-card-gradient">
         {imageUrl ? (
-          <img
-            src={imageUrl}
-            alt={name}
-            className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-[1.06]"
-            loading="lazy"
-          />
+          <>
+            <div className="absolute inset-0 animate-pulse bg-brand-sage/[0.10]" />
+            <img
+              src={imageUrl}
+              alt={name}
+              className="w-full h-full object-cover opacity-0 transition-all duration-500 group-hover:scale-[1.06]"
+              loading="lazy"
+              onLoad={(e) => { e.target.style.opacity = "1"; }}
+            />
+          </>
         ) : (
           /* Botanical placeholder when no image */
           <div className="absolute inset-0 flex items-end justify-center pb-4 overflow-hidden">

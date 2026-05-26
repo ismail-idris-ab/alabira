@@ -13,19 +13,40 @@ const IMPACT_STATS = [
   { value: "5,000+", label: "Acres Cultivated" },
 ];
 
+function TestimonialSkeleton() {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {[0, 1].map((i) => (
+        <div key={i} className="animate-pulse bg-white rounded-2xl p-8 shadow-sm">
+          <div className="h-8 w-8 rounded-sm bg-brand-sage/20 mb-4" />
+          <div className="space-y-2 mb-6">
+            <div className="h-4 bg-brand-ink/[6%] rounded w-full" />
+            <div className="h-4 bg-brand-ink/[6%] rounded w-5/6" />
+            <div className="h-4 bg-brand-ink/[6%] rounded w-3/4" />
+          </div>
+          <div className="h-3 bg-brand-ink/[5%] rounded w-1/3 mb-1" />
+          <div className="h-3 bg-brand-ink/[4%] rounded w-1/4" />
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export default function GlobalImpactSection() {
   const [testimonials, setTestimonials] = useState([]);
+  const [loadingTestimonials, setLoadingTestimonials] = useState(true);
   const { ref, inView } = useScrollReveal();
 
   useEffect(() => {
     testimonialsApi
       .list()
-      .then((res) => setTestimonials(res.data.data || res.data))
-      .catch(() => setTestimonials(staticTestimonials));
+      .then((res) => setTestimonials(res.data.data))
+      .catch(() => setTestimonials(staticTestimonials))
+      .finally(() => setLoadingTestimonials(false));
   }, []);
 
   return (
-    <section id="impact" className="py-24 lg:py-36" style={{ backgroundColor: "#F7F2E8" }}>
+    <section id="impact" className="py-24 lg:py-36 bg-brand-cream">
       <div className="max-w-7xl mx-auto px-6 lg:px-24" ref={ref}>
 
         {/* Heading */}
@@ -35,24 +56,17 @@ export default function GlobalImpactSection() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
         >
-          <p
-            className="font-sans uppercase text-brand-sage"
-            style={{ fontSize: "11px", letterSpacing: "0.2em", fontWeight: 500, marginBottom: "16px" }}
-          >
+          <p className="font-sans text-eyebrow uppercase text-brand-sage tracking-section font-medium mb-4">
             Where We Farm
           </p>
-          <h2
-            className="font-display text-brand-ink"
-            style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 600, letterSpacing: "-0.03em", lineHeight: 1.08 }}
-          >
+          <h2 className="font-display text-section text-brand-ink font-semibold tracking-heading leading-[1.08]">
             Our Global Impact
           </h2>
         </motion.div>
 
         {/* Impact stat strip */}
         <motion.div
-          className="grid grid-cols-3 mb-14"
-          style={{ borderTop: "1px solid rgba(15,26,20,0.1)", borderBottom: "1px solid rgba(15,26,20,0.1)" }}
+          className="grid grid-cols-3 mb-14 border-t border-b border-brand-ink/10"
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.15 }}
@@ -60,19 +74,12 @@ export default function GlobalImpactSection() {
           {IMPACT_STATS.map(({ value, label }, i) => (
             <div
               key={label}
-              className="flex flex-col items-center text-center py-6"
-              style={{ borderRight: i < IMPACT_STATS.length - 1 ? "1px solid rgba(15,26,20,0.1)" : "none" }}
+              className={`flex flex-col items-center text-center py-6 ${i < IMPACT_STATS.length - 1 ? "border-r border-brand-ink/10" : ""}`}
             >
-              <span
-                className="font-display text-brand-green"
-                style={{ fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", fontWeight: 600, letterSpacing: "-0.03em", lineHeight: 1 }}
-              >
+              <span className="font-display text-stat-sm text-brand-green font-semibold tracking-heading leading-none">
                 {value}
               </span>
-              <span
-                className="font-sans uppercase text-brand-clay mt-2"
-                style={{ fontSize: "10px", letterSpacing: "0.16em", fontWeight: 500 }}
-              >
+              <span className="font-sans text-label uppercase text-brand-clay tracking-label font-medium mt-2">
                 {label}
               </span>
             </div>
@@ -88,11 +95,8 @@ export default function GlobalImpactSection() {
         >
           <Suspense
             fallback={
-              <div
-                className="animate-pulse flex items-center justify-center"
-                style={{ height: "450px", backgroundColor: "rgba(127,176,138,0.12)", borderRadius: "4px" }}
-              >
-                <span className="font-sans text-brand-clay" style={{ fontSize: "0.875rem" }}>Loading map…</span>
+              <div className="animate-pulse flex items-center justify-center h-112.5 bg-brand-sage/12 rounded-sm">
+                <span className="font-sans text-sm text-brand-clay">Loading map…</span>
               </div>
             }
           >
@@ -106,19 +110,17 @@ export default function GlobalImpactSection() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.35 }}
         >
-          <p
-            className="font-sans uppercase text-brand-sage text-center"
-            style={{ fontSize: "11px", letterSpacing: "0.2em", fontWeight: 500, marginBottom: "12px" }}
-          >
+          <p className="font-sans text-eyebrow uppercase text-brand-sage text-center tracking-section font-medium mb-3">
             Testimonials
           </p>
-          <h3
-            className="font-display text-brand-ink text-center"
-            style={{ fontSize: "clamp(1.5rem, 3vw, 2rem)", fontWeight: 600, letterSpacing: "-0.02em", marginBottom: "40px" }}
-          >
+          <h3 className="font-display text-subtitle text-brand-ink text-center font-semibold tracking-heading-sm mb-10">
             What Our Partners Say
           </h3>
-          <TestimonialCarousel testimonials={testimonials.length ? testimonials : staticTestimonials} />
+          {loadingTestimonials ? (
+            <TestimonialSkeleton />
+          ) : (
+            <TestimonialCarousel testimonials={testimonials.length ? testimonials : staticTestimonials} />
+          )}
         </motion.div>
       </div>
     </section>
